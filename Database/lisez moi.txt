@@ -1,0 +1,1 @@
+creer une base de données "fehand" puis impoter le fichier user.sql qui se trove dans ce dossier
