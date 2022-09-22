@@ -86,17 +86,15 @@ $users = $user->ListeUser();
             </div>
             <div class="input-group mb-2">
               <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-lock"></i></div>
+                <div class="input-group-text"> <i class="bx bx-medal"></i></div>
               </div>
             
               <input type="password" class="form-control" id="inlineFormInputGroup" name="FonctionUtilisateur" placeholder="la fonction de l de passe de l'utilisateur...">
 
-            </div>
-            
-            <div class="offset-10 mr-3">
-
               <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
             </div>
+            
+            
         </form>
 
 
