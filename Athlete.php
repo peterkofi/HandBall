@@ -78,17 +78,144 @@
           <h6>Ajout Athlète</h6>
         </div>
 
-        <form class="form-inline" method="post" action="">
-            <div class="input-group mb-2">
+
+        <form class="form-inline" method="post" action="Script/User.php">
+            <div class="input-group mb-2 mr-1">
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="bx bx-user"></i></div>
               </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="insertionAthlete" placeholder="Inserer l'athlète...">
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="NomAthlete" placeholder="le nom de l'athlete...">
 
-              <button class="btn btn-outline-success ml-2" type="submit">Enregister</button>
             </div>
-        
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="PrenomAthlete" placeholder="le prenom de l'athlete...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="LieuNaissanceAthlete" placeholder="le lieu de naissance de l'athlete...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+              </div>
+              <input type="date" class="form-control" id="inlineFormInputGroup" name="DateNaissanceAthlete" placeholder="la date de naissance de l'athlète...">
+
+            </div>
+
+            
+
+            <div class="input-group mb-2 mr-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+              </div>
+              
+              
+              <input type="number" class="form-control" id="inlineFormInputGroup" name="tailleAthlete" placeholder="l'email de l'utilisateur...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+              </div>           
+              <input type="number" class="form-control" id="inlineFormInputGroup" name="posteAthlete" placeholder="le poste de l'athlete ...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+              </div>           
+              <input type="number" class="form-control" id="inlineFormInputGroup" name="poidAthlete" placeholder="le poid de l'athlete ...">
+
+            </div>
+
+
+            <div class="input-group mb-2 mr-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+              </div>
+
+              <select name="sexeAthlete" id="">
+                <option value="m">M</option>
+                <option value="f">F</option>
+              </select>
+              
+             
+            </div>
+
+
+            <div class="input-group mb-2 mr-2">
+
+              <span span class="small">Province</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+              </div>
+
+              <select name="sexeAthlete" id="">
+                <option value="Kinshasa">Kinshasa</option>
+                <option value="kwilu">kwilu</option>
+              </select>
+              
+            
+            </div>
+
+            <div class="input-group mb-2 mr-2">
+
+              <span span class="small">Ligue</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+              </div>
+
+              <select name="sexeAthlete" id="">
+                <option value="vodaLigue">VodacoLigue</option>
+                <option value="L1">L1</option>
+              </select>
+              
+            
+            </div>
+
+            <div class="input-group mb-2 mr-2">
+
+              <span span class="small">Club</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+              </div>
+
+              <select name="sexeAthlete" id="">
+                <option value="Vita">Vita</option>
+                <option value="Renaissance">Renaissance</option>
+              </select>
+              
+            
+            </div>
+
+
+            
+
+          
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-medal"></i></div>
+              </div>
+            
+              <input type="password" class="form-control" id="inlineFormInputGroup" name="FonctionUtilisateur" placeholder="la fonction de l de passe de l'utilisateur...">
+
+              <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
+            </div>
+            
+            
         </form>
+
 
       <hr>
       </div>

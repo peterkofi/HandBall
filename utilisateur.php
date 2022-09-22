@@ -136,8 +136,8 @@ $users = $user->ListeUser();
         <?php
 
 $num=0;
-foreach ($users as $user) { $num++; ?>
 
+foreach ($users as $user) { $num++; ?>
 
   <tr>
     <th scope="row"><?= $num ?></th>
