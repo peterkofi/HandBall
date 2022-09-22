@@ -1,3 +1,10 @@
+<?php
+include_once("Script/_head.php");
+
+$users = $user->ListeUser();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,6 +84,14 @@
               <input type="password" class="form-control" id="inlineFormInputGroup" name="PassWordUtilisateur" placeholder="le mot de passe de l'utilisateur...">
 
             </div>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-lock"></i></div>
+              </div>
+            
+              <input type="password" class="form-control" id="inlineFormInputGroup" name="FonctionUtilisateur" placeholder="la fonction de l de passe de l'utilisateur...">
+
+            </div>
             
             <div class="offset-10 mr-3">
 
@@ -120,31 +135,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Secreataire</td>
-            <td>
-                 <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Secreataire</td>
-            <td>
-                <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
-            </td>
-          </tr>
-         
+        <?php
+
+$num=0;
+foreach ($users as $user) { $num++; ?>
+ 
+ `Id_user`, `prenom_user`, `nom_user`, `email`, `password`
+
+  <tr>
+    <th scope="row"><?= $num ?></th>
+    <td><?= $user->nom_user ?></td>
+    <td><?= $user->prenom_user ?></td>
+    <td><?= $user->email ?></td>
+    <td><?= $user->password ?></td>
+    <td>
+         <a href="Script/Province?operation='supp'&id=<?= $province->id_province ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+         <a href="Script/Province?operation='edit'&id=<?= $province->id_province ?>" class="twitter"><i class="bx bx-edit"></i></a>
+         <a href="Script/Province?operation='detail'&id=<?= $province->id_province ?>" class="twitter"><i class="bx bx-show"></i></a>
+    </td>
+  </tr>
+
+
+<?php
+}
+?>
         </tbody>
         </table>
 

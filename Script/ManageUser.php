@@ -10,8 +10,8 @@
 
             return $this->link;
         }      
-       function UserRegistration($PrenomUser,$NomUser,$email,$password){ 
-            $query="insert INTO user(`prenom_user`, `nom_user`, `email`,`password`) values('$PrenomUser','$NomUser','$email','$password')";
+       function UserRegistration($PrenomUser,$NomUser,$email,$password,$fonctionUser){ 
+            $query="insert INTO user( `prenom_user`, `nom_user`, `email`, `password`, `fonction_user`) values('$PrenomUser','$NomUser','$email','$password','$fonctionUser')";
              $this->link->exec($query);   
         }
             

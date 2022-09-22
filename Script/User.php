@@ -4,11 +4,16 @@ include("_head.php");
 
 if(isset($_POST["enregistrer"])){
 
+var_dump($_POST);
+exit();
 
 $NomUtilisateur = $_POST["NomUtilisateur"];
 $PrenomUtilisateur = $_POST["PrenomUtilisateur"];
 $EmailUtilisateur = $_POST["EmailUtilisateur"];
 $PassWordUtilisateur = $_POST["PassWordUtilisateur"];
+$FonctionUtilisateur = $_POST["FonctionUtilisateur"];
+
+
 
 $erreur = array();
 
@@ -31,7 +36,7 @@ $erreur = array();
   
     }else{
 
-        $user->UserRegistration($PrenomUtilisateur,$NomUtilisateur,$EmailUtilisateur,$PassWordUtilisateur);
+        $user->UserRegistration($PrenomUtilisateur,$NomUtilisateur,$EmailUtilisateur,$PassWordUtilisateur,$FonctionUtilisateur);
 
         if ($user) {
 
