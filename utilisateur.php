@@ -80,7 +80,7 @@
             
             <div class="offset-10 mr-3">
 
-              <button class="btn btn-outline-success ml-2" type="submit">Enregister</button>
+              <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
             </div>
         </form>
 
