@@ -137,8 +137,7 @@ $users = $user->ListeUser();
 
 $num=0;
 foreach ($users as $user) { $num++; ?>
- 
- `Id_user`, `prenom_user`, `nom_user`, `email`, `password`
+
 
   <tr>
     <th scope="row"><?= $num ?></th>
@@ -147,9 +146,9 @@ foreach ($users as $user) { $num++; ?>
     <td><?= $user->email ?></td>
     <td><?= $user->password ?></td>
     <td>
-         <a href="Script/Province?operation='supp'&id=<?= $province->id_province ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-         <a href="Script/Province?operation='edit'&id=<?= $province->id_province ?>" class="twitter"><i class="bx bx-edit"></i></a>
-         <a href="Script/Province?operation='detail'&id=<?= $province->id_province ?>" class="twitter"><i class="bx bx-show"></i></a>
+         <a href="Script/Province?operation='supp'&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+         <a href="Script/Province?operation='edit'&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-edit"></i></a>
+         <a href="Script/Province?operation='detail'&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-show"></i></a>
     </td>
   </tr>
 

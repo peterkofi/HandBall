@@ -4,8 +4,6 @@ include("_head.php");
 
 if(isset($_POST["enregistrer"])){
 
-var_dump($_POST);
-exit();
 
 $NomUtilisateur = $_POST["NomUtilisateur"];
 $PrenomUtilisateur = $_POST["PrenomUtilisateur"];
