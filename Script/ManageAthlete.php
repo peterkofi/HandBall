@@ -12,8 +12,8 @@
             return $this->link;
         }
     
-        function AthleteRegistration($IdAthlete,$NomAthlete,$Sexe,$DateNaissance,$LieuDeNaissance,$Poste,$Poid,$Taille,$IdProvince,$IdLigue){
-            $query="insert INTO athlete(IdAthlete,NomAthlete, Sexe, DateNaissance,LieuDeNaissance,Poste,Poid,Taille,IdProvince,IdLigue) values($IdAthlete,'$NomAthlete','$Sexe','$DateNaissance','$LieuDeNaissance','$Poste',$Poid,$Taille,$IdProvince,$IdLigue)";
+        function AthleteRegistration($NomAthlete,$PrenomAthlete,$SexeAthlete,$DateNaissance,$LieuDeNaissance,$Poste,$Poid,$Taille,$IdCub){                
+            $query="insert INTO athlete(`noms_athlete`, `prenom_athlete`, `sexe`, `date_naissance`, `lieu_naissance`, `poste`, `poid`, `taille`, `id_club`) values('$NomAthlete','$PrenomAthlete','$SexeAthlete','$DateNaissance','$LieuDeNaissance',$Poste,$Poid,$Taille,$IdCub)";
              $this->link->exec($query);   
         }
             

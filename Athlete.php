@@ -1,3 +1,12 @@
+<?php
+include_once("Script/_head.php");
+
+$provinces = $province->ListeProvince();
+$ligues=$ligue->ListeLigue();
+$clubs=$club->ListeClub();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +88,7 @@
         </div>
 
 
-        <form class="form-inline" method="post" action="Script/User.php">
+        <form class="form-inline" method="post" action="Script/Athlete.php">
             <div class="input-group mb-2 mr-1">
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="bx bx-user"></i></div>
@@ -97,7 +106,7 @@
 
             <div class="input-group mb-2 mr-1">
               <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+                <div class="input-group-text"> <i class="bx bx-map"></i></div>
               </div>
               <input type="text" class="form-control" id="inlineFormInputGroup" name="LieuNaissanceAthlete" placeholder="le lieu de naissance de l'athlete...">
 
@@ -105,13 +114,11 @@
 
             <div class="input-group mb-2 mr-1">
               <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+                <div class="input-group-text"> <i class="bx bx-calendar-check"></i></div>
               </div>
               <input type="date" class="form-control" id="inlineFormInputGroup" name="DateNaissanceAthlete" placeholder="la date de naissance de l'athlète...">
 
             </div>
-
-            
 
             <div class="input-group mb-2 mr-2">
               <div class="input-group-prepend">
@@ -119,7 +126,7 @@
               </div>
               
               
-              <input type="number" class="form-control" id="inlineFormInputGroup" name="tailleAthlete" placeholder="l'email de l'utilisateur...">
+              <input type="email" class="form-control" id="inlineFormInputGroup" name="tailleAthlete" placeholder="l'email de l'utilisateur...">
 
             </div>
 
@@ -140,9 +147,11 @@
             </div>
 
 
-            <div class="input-group mb-2 mr-2">
+            <div class="input-group mb-2 mr-2 align-items-center">
+
+            <span span class="small">Sexe</span>
               <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+                <div class="input-group-text"> <i class="bx bx-male"></i></div>
               </div>
 
               <select name="sexeAthlete" id="">
@@ -154,65 +163,30 @@
             </div>
 
 
-            <div class="input-group mb-2 mr-2">
-
-              <span span class="small">Province</span>
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
-              </div>
-
-              <select name="sexeAthlete" id="">
-                <option value="Kinshasa">Kinshasa</option>
-                <option value="kwilu">kwilu</option>
-              </select>
-              
-            
-            </div>
-
-            <div class="input-group mb-2 mr-2">
-
-              <span span class="small">Ligue</span>
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
-              </div>
-
-              <select name="sexeAthlete" id="">
-                <option value="vodaLigue">VodacoLigue</option>
-                <option value="L1">L1</option>
-              </select>
-              
-            
-            </div>
-
-            <div class="input-group mb-2 mr-2">
+ 
+            <div class="input-group mb-2 mr-2 align-items-center">
 
               <span span class="small">Club</span>
               <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+                <div class="input-group-text"> <i class="bx bx-football"></i></div>
               </div>
 
-              <select name="sexeAthlete" id="">
-                <option value="Vita">Vita</option>
-                <option value="Renaissance">Renaissance</option>
+              <select name="ClubAthlete" id="" class="form-control">
+                  <?php
+
+                    foreach ($clubs as $club) {?>
+
+                    <option value="<?= $club->id_club ?>"><?= $club->nom_club ?></option>
+
+                  <?php
+                  }
+                  ?>
               </select>
               
-            
-            </div>
-
-
-            
-
-          
-            <div class="input-group mb-2">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-medal"></i></div>
-              </div>
-            
-              <input type="password" class="form-control" id="inlineFormInputGroup" name="FonctionUtilisateur" placeholder="la fonction de l de passe de l'utilisateur...">
-
               <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
             </div>
-            
+
+          
             
         </form>
 

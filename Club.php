@@ -1,3 +1,13 @@
+<?php
+include_once("Script/_head.php");
+
+$provinces = $province->ListeProvince();
+$ligues=$ligue->ListeLigue();
+$clubs=$club->ListeClub();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,14 +87,82 @@
         <div class="section-title" data-aos="fade-left">
           <h6>Ajout Club</h6>
         </div>
+    
 
-        <form class="form-inline" method="post" action="Script/Club.php">
-            <div class="input-group mb-2">
+        <form class="form-inline" method="post" action="Script/Club.php" enctype="multipart/form-data">
+            
+            <div class="input-group mb-2 mr-1">
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="bx bx-user"></i></div>
               </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="rechercheClub" placeholder="Inserer le club..." aria-label="Search">
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="NomClub" placeholder="le nom du club...">
 
+            </div>
+
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="PresidentClub" placeholder="le president du club...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-calendar-check"></i></div>
+              </div>
+              <input type="date" class="form-control" id="inlineFormInputGroup" name="DateCreationClub" placeholder="la date de creation du club...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+              </div>
+              <input type="file" class="form-control" id="inlineFormInputGroup" name="PhotoClub">
+
+            </div>
+        
+            <div class="input-group mb-2 mr-2 align-items-center">
+
+              <span span class="small">Ligue</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-football"></i></div>
+              </div>
+
+              <select name="LigueAthlete" id="" class="form-control">
+                  <?php
+
+                    foreach ($ligues as $ligue) {?>
+
+                    <option value="<?= $ligue->id_ligue ?>"><?= $ligue->nom ?></option>
+
+                  <?php
+                  }
+                  ?>
+              </select>
+   
+            </div>
+        
+            <div class="input-group mb-2 mr-2 align-items-center">
+
+              <span span class="small">Province</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-football"></i></div>
+              </div>
+
+              <select name="ProvinceAthlete" id="" class="form-control">
+                  <?php
+
+                    foreach ($provinces as $province) {?>
+
+                    <option value="<?= $province->id_province ?>"><?= $province->nom ?></option>
+
+                  <?php
+                  }
+                  ?>
+              </select>
+              
               <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
             </div>
         </form>
@@ -112,6 +190,8 @@
 
       <table class="table table-striped mb-3 pb-3" data-aos="fade-left" data-aos-delay="200">
         <thead>
+
+        
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nom</th>
@@ -122,36 +202,26 @@
           </tr>
         </thead>
         <tbody>
+
+        <?php
+          $num=0;
+        foreach ($clubs as $club) { $num++ ?>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Secreataire</td>
-            <td>
-                 <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
-            </td>
+            <td scope="col"><?= $num ?></td>
+            <td scope="col"><?= $club->nom_club ?></td>
+            <td scope="col"><?= $club->annee_creation ?></td>
+            <td scope="col"><?= $club->president ?></th>
+            <td scope="col"><?= $club->id_province ?></th>
+            <td scope="col"><?= $club->id_ligue ?></td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Secreataire</td>
-            <td>
-                <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+
+        <option value="<?= $ligue->id_ligue ?>"><?= $ligue->nom ?></option>
+
+        <?php
+        }
+        ?>
+
+    
         </tbody>
         </table>
 

@@ -2,90 +2,25 @@
 
 include("_head.php");
 
-
-//recherche' => string 'vita'
-
-/*
-if(isset($_POST["modificationAgent"])){
-    $modifIdentifiant=$_POST["modifIdentifiant"];
-    $modifMotdePasse=$_POST["modifMotdePasse"];
-    $idAgent=$_POST["idAgent"];
-
-    $erreur=[];
-    
-    if(empty( $modifMotdePasse)){
-        $erreur["mdp"]="tu dois saisir un mot de passe";
-  $serialTab=serialize($erreur);
-        header("Location:../agent.php?erreur=$serialTab & ModificationAgent=0"); 
-    }else{
-
-  
-
-    $sql="UPDATE agent SET email='". $modifIdentifiant."', pass ='".$modifMotdePasse."' WHERE id=".$idAgent;
-    $ModificationAgent = $agents->AgentUpdate($sql);
-
-    if($ModificationAgent==1){
-        
-        header("Location:../agent.php?message=1 & ModificationAgent=1"); 
-    }else{
-        header("Location:../agent.php?erreur=1 & ModificationAgent=0"); 
-    }
-    
-    }
-
-    
-}
-
-if(isset($_POST["autorisationAgent"])){
-
-    $autorisation=$_POST["autorisation"];
-    $idAgent=$_POST["idAgent"];
-
-    $etatAutorisation="";
-
-    if($autorisation=="autorise"){
-        $etatAutorisation="autorise";
-    }else if($autorisation=="bloque"){ 
-        $etatAutorisation="bloque";
-    }
-
-
-    $sql= "UPDATE agent set Autorisation='$autorisation' WHERE id=$idAgent";
-    $ModificationAgent= $agents->AgentUpdate($sql);
-
-    if($ModificationAgent){
-        
-        header("Location:../agent.php?message=1 & autorisation=$etatAutorisation"); 
-    }else{
-        header("Location:../agent.php?erreur=2 & autorisation=$etatAutorisation"); 
-    }
-    
-
- 
-}
-
-*/
-
-
 if(isset($_POST["enregistrer"])){
 
+    $NomClub = $_POST["NomClub"];
+    $PresidentClub = $_POST["PresidentClub"];
+    $DateCreationClub = $_POST["DateCreationClub"];
+    $LigueAthlete = $_POST["LigueAthlete"];
+    $ProvinceAthlete = $_POST["ProvinceAthlete"];
 
-/*  var_dump($_POST);
-    var_dump($_FILES);
-    exit();
-*/
+    
 
     $erreur=[];  
 
-    $rechercheClub=$_POST["rechercheClub"];
-
     $extPossible = array("jpeg", "jpg", "png");
 
-    $nomFichierPhotoClub = $_FILES["photoClub"]["name"];
-    $typeFichierPhotoClub = $_FILES["photoClub"]["type"];
-    $sizeFichierPhotoClub = $_FILES["photoClub"]["size"];
-    $tmp_namePhotoClub = $_FILES["photoClub"]["tmp_name"];
-    $ErreurPhotoClub = $_FILES["photoClub"]["error"];
+    $nomFichierPhotoClub = $_FILES["PhotoClub"]["name"];
+    $typeFichierPhotoClub = $_FILES["PhotoClub"]["type"];
+    $sizeFichierPhotoClub = $_FILES["PhotoClub"]["size"];
+    $tmp_namePhotoClub = $_FILES["PhotoClub"]["tmp_name"];
+    $ErreurPhotoClub = $_FILES["PhotoClub"]["error"];
 
     $extFichierPhotoClub = explode(".", $nomFichierPhotoClub);
     $extFichierPhotoClubActuelle = strtolower(end($extFichierPhotoClub));
@@ -114,32 +49,38 @@ if (!empty($_FILES["photoClub"]["name"])) {
     $erreur["photoClub"] = "veillez inserer la photo de Club ";
 }
   
-    // champ formulaire
 
-    if(empty($rechercheClub)){
-        $erreur["rechercheClub"]= "veillez inserer le nom du club ";
+    if(empty($NomClub)){
+        $erreur["NomClub"]= "veillez inserer le nom du club ";
     }
+    if(empty($PresidentClub)){
+        $erreur["PresidentClub"]= "veillez inserer le nom du president du club ";
+    }
+    if(empty($DateCreationClub)){
+        $erreur["DateCreationClub"]= "veillez inserer la date de creation du club ";
+    }
+    if(empty($LigueAthlete)){
+        $erreur["LigueAthlete"]= "veillez inserer la ligue du club ";
+    }
+    if(empty($ProvinceAthlete)){
+        $erreur["ProvinceAthlete"]= "veillez inserer la province du club ";
+    }
+
+    
  
     if (!empty($erreur)) {
 
-        header("Location:../Club.php?Erreur=1);
+        header("Location:../Club.php?Erreur=1");
   
     }else{
 
-        $club->ClubRegistration($rechercheClub,$prenom,$NomDelaPhotoClubAcutuel,$adresse,$typeAgent, $email,$pass );
 
-        if ($agents) {
-            header("Location:../ajouter-agent.php?message=Succes& agent=$noms");
-        } else header("Location:../ajouter-agent.php?message=Echec");
+        $club->ClubRegistration($NomClub,$NomDelaPhotoClubAcutuel,$DateCreationClub,$PresidentClub,$LigueAthlete,$ProvinceAthlete);
+
+        if ($club) {
+            header("Location:../Club.php?message=Succes&club=$NomClub");
+        } else header("Location:../Club.php?message=Echec");
    
     }
 
-    /*  $clients->ClientRegistration($nom,$prenom,$photoClub,$adresse,$age,$photoSignature);
-
-                    if($clients){
-                        header("Location:../ajouter-client.php");
-
-                    }else echo "Echec enregistrement !";
-
-    */
  }

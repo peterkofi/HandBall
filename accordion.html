@@ -25,3 +25,54 @@
 
 
 </div>
+
+
+
+<div class="input-group mb-2 mr-2 align-items-center">
+
+    <span span class="small">Province</span>
+    <div class="input-group-prepend">
+        <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+    </div>
+
+    <select name="ProvinceAthlete" id="" class="">
+    <?php
+
+          
+      foreach ($provinces as $province) {?>
+
+      <option value="<?= $province->id_province ?>"><?= $province->nom ?></option>
+
+    <?php
+    }
+    ?>
+    </select>
+
+
+</div>
+
+
+
+<div class="input-group mb-2 mr-2 align-items-center">
+
+    <span span class="small">Ligue</span>
+    <div class="input-group-prepend">
+        <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+    </div>
+
+    <select name="LigueAthlete" id="" class="">
+
+    <?php
+
+
+    foreach ($ligues as $ligue) {?>
+
+        <option value="<?= $ligue->id_ligue ?>"><?= $ligue->nom ?></option>
+
+      <?php
+      }
+      ?>
+    </select>
+
+
+</div>
