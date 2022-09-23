@@ -4,6 +4,7 @@ include_once("Script/_head.php");
 $provinces = $province->ListeProvince();
 $ligues=$ligue->ListeLigue();
 $clubs=$club->ListeClub();
+$Athletes=$Athlete->AthleteList();
 
 ?>
 
@@ -122,17 +123,17 @@ $clubs=$club->ListeClub();
 
             <div class="input-group mb-2 mr-2">
               <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+                <div class="input-group-text"> <i class="bx bx-male"></i></div>
               </div>
               
               
-              <input type="email" class="form-control" id="inlineFormInputGroup" name="tailleAthlete" placeholder="l'email de l'utilisateur...">
+              <input type="number" class="form-control" id="inlineFormInputGroup" name="tailleAthlete" placeholder="la taille de l'athlete...">
 
             </div>
 
             <div class="input-group mb-2 mr-2">
               <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
+                <div class="input-group-text"> <i class="bx bx-male"></i></div>
               </div>           
               <input type="number" class="form-control" id="inlineFormInputGroup" name="posteAthlete" placeholder="le poste de l'athlete ...">
 
@@ -220,45 +221,38 @@ $clubs=$club->ListeClub();
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Nom</th>
-            <th scope="col">Postnom</th>
             <th scope="col">Prenom</th>
-            <th scope="col">poste</th>
-            <th scope="col">poid</th>
-            <th scope="col">taille</th>
+            <th scope="col">Date N</th>
+            <th scope="col">Poste</th>
+            <th scope="col">Poid</th>
+            <th scope="col">Taille</th>
             <th scope="col">Operation</th>
           </tr>
         </thead>
         <tbody>
+         
+        <?php
+          $num=0;
+        foreach ($Athletes as $Athlete) { $num++ ?>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Secreataire</td>
+            <td scope="col"><?= $num ?></td>
+            <td scope="col"><?= $Athlete->noms_athlete ?></td>
+            <td scope="col"><?= $Athlete->prenom_athlete ?></td>
+            <td scope="col"><?= $Athlete->date_naissance ?></th>
+            <td scope="col"><?= $Athlete->poste ?></th>
+            <td scope="col"><?= $Athlete->poid ?></td>
+            <td scope="col"><?= $Athlete->taille ?></td>
             <td>
-                 <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
+              <a href="Script/Athlete.php?operation=supp&id=<?= $Athlete->id_athlete ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+              <a href="Script/Athlete.php?operation=edit&id=<?= $Athlete->id_athlete ?>" class="twitter"><i class="bx bx-edit"></i></a>
+              <a href="Script/Athlete.php?operation=detail&id=<?= $Athlete->id_athlete ?>" class="twitter"><i class="bx bx-show"></i></a>
             </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Secreataire</td>
-            <td>
-                <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+
+        <?php
+        }
+        ?>
+
         </tbody>
         </table>
 

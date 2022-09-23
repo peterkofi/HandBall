@@ -4,15 +4,28 @@ include("_head.php");
 
 if(isset($_POST["enregistrer"])){
 
-$NomAthlete = $_POST["NomAthlete"];
-$PrenomAthlete = $_POST["PrenomAthlete"];
-$LieuNaissanceAthlete = $_POST["LieuNaissanceAthlete"];
-$DateNaissanceAthlete = $_POST["DateNaissanceAthlete"];
-$tailleAthlete = $_POST["tailleAthlete"];
-$posteAthlete = $_POST["posteAthlete"];
-$poidAthlete = $_POST["poidAthlete"];
-$sexeAthlete = $_POST["sexeAthlete"];
-$ClubAthlete = $_POST["ClubAthlete"];
+    // var_dump($_POST);
+    // exit();
+
+    // 'NomAthlete' => string 'kofi' (length=4)
+    // 'PrenomAthlete' => string 'peter' (length=5)
+    // 'LieuNaissanceAthlete' => string 'kin' (length=3)
+    // 'DateNaissanceAthlete' => string '2022-09-01' (length=10)
+    // 'tailleAthlete' => string 'peterkofi74@gmail.com' (length=21)
+    // 'posteAthlete' => string '3' (length=1)
+    // 'poidAthlete' => string '80' (length=2)
+    // 'sexeAthlete' => string 'm' (length=1)
+    // 'ClubAthlete' => string '3' (length=1)
+
+    $NomAthlete = $_POST["NomAthlete"];
+    $PrenomAthlete = $_POST["PrenomAthlete"];
+    $LieuNaissanceAthlete = $_POST["LieuNaissanceAthlete"];
+    $DateNaissanceAthlete = $_POST["DateNaissanceAthlete"];
+    $tailleAthlete =(int) $_POST["tailleAthlete"];
+    $posteAthlete =(int) $_POST["posteAthlete"];
+    $poidAthlete =(int) $_POST["poidAthlete"];
+    $sexeAthlete = $_POST["sexeAthlete"];
+    $ClubAthlete =(int) $_POST["ClubAthlete"];
 
 
 
@@ -42,12 +55,6 @@ $erreur = array();
     if(empty($sexeAthlete)){
         $erreur["sexeAthlete"]= "veillez inserer le mot de passe de l'athlete ";
     }
-    if(empty($ProvinceAthlete)){
-        $erreur["ProvinceAthlete"]= "veillez inserer le mot de passe de l'athlete ";
-    }
-    if(empty($LigueAthlete)){
-        $erreur["LigueAthlete"]= "veillez inserer le mot de passe de l'athlete ";
-    }
     if(empty($ClubAthlete)){
         $erreur["ClubAthlete"]= "veillez inserer le mot de passe de l'athlete ";
     }
@@ -57,13 +64,14 @@ $erreur = array();
         header("Location:../Athlete.php?Erreur=1");
   
     }else{
-        $Athlete->AthleteRegistration($NomAthlete,$PrenomAthlete,$SexeAthlete,$DateNaissanceAthlete,$LieuNaissanceAthlete,$posteAthlete,$poidAthlete,$tailleAthlete,$LigueAthlete);  
+
+        $Athlete->AthleteRegistration($NomAthlete,$PrenomAthlete,$SexeAthlete,$DateNaissanceAthlete,$LieuNaissanceAthlete,$posteAthlete,$poidAthlete,$tailleAthlete,$ClubAthlete);  
      
         if ($Athlete) {
 
             $noms= $PrenomAthlete ." ".$NomAthlete;
-            header("Location:../utilisateur.php?message=Succes&user=$noms");
-        } else header("Location:../utilisateur.php?message=Echec");
+            header("Location:../Athlete.php?message=Succes&user=$noms");
+        } else header("Location:../Athlete.php?message=Echec");
    
     }
 

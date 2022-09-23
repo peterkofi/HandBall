@@ -100,7 +100,7 @@ if (isset($nomFichierPhotoClub)) {
       
         $id=(int) $_GET["id"];
 
-        $club = $club-> DeleteUser($id);
+        $club = $club-> DeleteClub($id);
     
         if ($club) {
             header("Location:../Club.php?message=Succes");
