@@ -44,6 +44,16 @@
              
         }
 
+        function DeleteLigue($id){
+            $sql = "DELETE FROM ligue WHERE id_ligue= :id";
+
+            $stm= $this->link->prepare($sql);
+            $stm->bindParam("id", $id, PDO::PARAM_INT);
+            $result= $stm->execute();
+
+            return result;
+        }
+
 
 
        }

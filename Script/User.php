@@ -10,6 +10,7 @@ $PrenomUtilisateur = $_POST["PrenomUtilisateur"];
 $EmailUtilisateur = $_POST["EmailUtilisateur"];
 $PassWordUtilisateur = $_POST["PassWordUtilisateur"];
 $FonctionUtilisateur = $_POST["FonctionUtilisateur"];
+$ProvinceUser = $_POST["ProvinceUser"];
 
 
 
@@ -27,6 +28,12 @@ $erreur = array();
     if(empty($PassWordUtilisateur)){
         $erreur["PassWordUtilisateur"]= "veillez inserer le mot de passe de l'utilisateur ";
     }
+    if(empty($FonctionUtilisateur)){
+        $erreur["FonctionUtilisateur"]= "veillez inserer la fonction de l'utilisateur ";
+    }
+    if(empty($ProvinceUser)){
+        $erreur["ProvinceUser"]= "veillez inserer la province de l'utilisateur ";
+    }
  
     if (!empty($erreur)) {
 
@@ -34,14 +41,28 @@ $erreur = array();
   
     }else{
 
-        $user->UserRegistration($PrenomUtilisateur,$NomUtilisateur,$EmailUtilisateur,$PassWordUtilisateur,$FonctionUtilisateur);
+        $user->UserRegistration($PrenomUtilisateur,$NomUtilisateur,$EmailUtilisateur,$PassWordUtilisateur,$FonctionUtilisateur,$ProvinceUser);
 
         if ($user) {
 
             $noms= $PrenomUtilisateur ." ".$NomUtilisateur;
             header("Location:../utilisateur.php?message=Succes&user=$noms");
         } else header("Location:../utilisateur.php?message=Echec");
-   
     }
 
  }
+
+ if(isset($_GET["operation"]) ){
+
+    if($_GET["operation"]=="supp"){
+      
+        $id=(int) $_GET["id"];
+
+        $user = $user-> DeleteUser($id);
+    
+        if ($user) {
+            header("Location:../utilisateur.php?message=Succes");
+        } else header("Location:../utilisateur.php?message=Echec");
+    }
+}
+

@@ -30,3 +30,18 @@ if(isset($_POST["enregistrer"])){
     }
 
  }
+
+
+ if(isset($_GET["operation"]) ){
+
+    if($_GET["operation"]=="supp"){
+      
+        $id=(int) $_GET["id"];
+
+        $ligue = $ligue-> DeleteLigue($id);
+    
+        if ($ligue) {
+            header("Location:../Ligue.php?message=Succes");
+        } else header("Location:../Ligue.php?message=Echec");
+    }
+}

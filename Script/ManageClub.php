@@ -13,7 +13,7 @@
         }
 
        function ClubRegistration($NomClub,$PhotoClub,$AnneeCreation,$President,$IdLeague,$IdProvince){
-            $query="insert INTO club(NomClub,photo_club,AnneeCreation,President,IdLeague,IdProvince) values($IdClub,'$NomClub','$PhotoClub','$AnneeCreation','$President',$IdLeague,$IdProvince)";
+            $query="insert INTO club( `nom_club`, `photo_club`, `annee_creation`, `president`, `id_ligue`, `id_province`) values('$NomClub','$PhotoClub','$AnneeCreation','$President',$IdLeague,$IdProvince)";
              $this->link->exec($query);   
         }
             
@@ -44,6 +44,19 @@
            $retour= $this->link->exec($query); 
             return $retour; 
              
+        }
+
+        function DeleteClub($id){
+
+            $sql="DELETE FROM club WHERE id_club=:id";
+
+            $stm= $this->link->prepare($sql);
+            $stm->bindParam("id", $id, PDO::PARAM_INT);
+
+            $res=$stm->execute();
+
+            return $res;
+
         }
 
 

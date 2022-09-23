@@ -38,10 +38,21 @@
 
            return $data;            
         }
+
          function ProvinceUpdate($query){
            $retour= $this->link->exec($query); 
             return $retour; 
              
+        }
+
+        function DeleteProvince($id){
+
+            $sql="DELETE FROM province WHERE id_province = :id";
+            $res =$this->link->prepare($sql);
+            $res->bindParam('id', $id, PDO::PARAM_INT);
+            $retour = $res->execute();
+
+            return $retour;
         }
 
 

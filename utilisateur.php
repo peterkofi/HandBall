@@ -2,6 +2,7 @@
 include_once("Script/_head.php");
 
 $users = $user->ListeUser();
+$provinces=$province->ListeProvince();
 
 ?>
 
@@ -84,12 +85,34 @@ $users = $user->ListeUser();
               <input type="password" class="form-control" id="inlineFormInputGroup" name="PassWordUtilisateur" placeholder="le mot de passe de l'utilisateur...">
 
             </div>
+
+            <div class="input-group mb-2 mr-2 align-items-center">
+
+              <span span class="small mr-2">Province</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-map"></i></div>
+              </div>
+
+              <select name="ProvinceUser" id="" class="form-control">
+                  <?php
+
+                    foreach ($provinces as $province) {?>
+
+                    <option value="<?= $province->id_province ?>"><?= $province->nom ?></option>
+
+                  <?php
+                  }
+                  ?>
+              </select>
+
+            </div>
+
             <div class="input-group mb-2">
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="bx bx-medal"></i></div>
               </div>
             
-              <input type="password" class="form-control" id="inlineFormInputGroup" name="FonctionUtilisateur" placeholder="la fonction de l de passe de l'utilisateur...">
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="FonctionUtilisateur" placeholder="la fonction de l de passe de l'utilisateur...">
 
               <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
             </div>
@@ -144,11 +167,11 @@ foreach ($users as $user) { $num++; ?>
     <td><?= $user->nom_user ?></td>
     <td><?= $user->prenom_user ?></td>
     <td><?= $user->email ?></td>
-    <td><?= $user->password ?></td>
+    <td><?= $user->fonction_user ?></td>
     <td>
-         <a href="Script/Province?operation='supp'&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-         <a href="Script/Province?operation='edit'&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-edit"></i></a>
-         <a href="Script/Province?operation='detail'&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-show"></i></a>
+         <a href="Script/User.php?operation=supp&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+         <a href="Script/User.php?operation=edit&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-edit"></i></a>
+         <a href="Script/User.php?operation=detail&id=<?= $user->Id_user ?>" class="twitter"><i class="bx bx-show"></i></a>
     </td>
   </tr>
 

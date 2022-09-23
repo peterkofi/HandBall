@@ -1,12 +1,3 @@
-<?php
-include_once("Script/_head.php");
-
-$provinces = $province->ListeProvince();
-$ligues=$ligue->ListeLigue();
-$clubs=$club->ListeClub();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +5,7 @@ $clubs=$club->ListeClub();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>FCHandball - Competitions</title>
+  <title>FCHandball - Accueil</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -27,7 +18,6 @@ $clubs=$club->ListeClub();
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
@@ -44,54 +34,19 @@ $clubs=$club->ListeClub();
   include("menu.php");
   ?>
 
-  <main id="main" style="margin-top: 250px; margin-bottom: 100px">
-
-    <div class="container offset-3">
-
-    <div class="col-lg-9 ml-1 mt-5" id="main_menu">
- <!-- ======= About Section ======= -->
-    <div class="athlète mt-5">
-       <hr>
-        <div class="section-title" data-aos="fade-left">
-          <h6>Connexion</h6>
-        </div>
-
-        <form class="form-inline" method="post" action="Script/User.php">     
-            <div class="input-group mb-2 mr-2">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>
-              </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="EmailUtilisateur" placeholder="Votre email...">
-
-            </div>
-
-            <div class="input-group mb-2">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-lock"></i></div>
-              </div>
-              <input type="password" class="form-control" id="inlineFormInputGroup" name="PassWordUtilisateur" placeholder="Votre mot de passe...">
-
-            </div>
-
-            <div class="input-group mb-2">
-              <button class="btn btn-outline-success ml-2" name="login" type="submit">Se connecter</button>
-            </div>
-            
-            
-        </form>
-
-      <hr>
-      </div>
-       
-
-
-     
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+      <h1 class="">BIENVENUE</h1> 
+      <h2>Vous etes le bienvenu dans le site officiel de la federation congolaise de handball</h2>
 
     </div>
+  </section><!-- End Hero -->
 
-     
-     
-      </div>
+  <main id="main">
+
+    
+
   </main><!-- End #main -->
 
   <?php
@@ -99,6 +54,17 @@ $clubs=$club->ListeClub();
   ?>
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
+  <script>
+
+ // setInterval(myTimer, 1000);
+
+function myTimer() {
+  const date = new Date();
+document.getElementById("demo").innerHTML = date.toLocaleTimeString();
+}
+
+  </script>
+ 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

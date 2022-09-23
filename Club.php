@@ -199,6 +199,7 @@ $clubs=$club->ListeClub();
             <th scope="col">President</th>
             <th scope="col">Province</th>
             <th scope="col">Ligue</th>
+            <th scope="col">Operation</th>
           </tr>
         </thead>
         <tbody>
@@ -213,6 +214,11 @@ $clubs=$club->ListeClub();
             <td scope="col"><?= $club->president ?></th>
             <td scope="col"><?= $club->id_province ?></th>
             <td scope="col"><?= $club->id_ligue ?></td>
+            <td>
+         <a href="Script/Club.php?operation=supp&id=<?= $club->id_club ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+         <a href="Script/Club.php?operation=edit&id=<?= $club->id_club ?>" class="twitter"><i class="bx bx-edit"></i></a>
+         <a href="Script/Club.php?operation=detail&id=<?= $club->id_club ?>" class="twitter"><i class="bx bx-show"></i></a>
+    </td>
           </tr>
 
         <option value="<?= $ligue->id_ligue ?>"><?= $ligue->nom ?></option>

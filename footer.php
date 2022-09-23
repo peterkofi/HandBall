@@ -43,7 +43,7 @@
         </div>
         <div class="credits">
          
-        Designed by <a href="https://bootstrapmade.com/">La fédérationcongolaise de Handball</a>
+        Designed by <a href="#">La fédérationcongolaise de Handball</a>
         </div>
     </div>
     <div class="social-links text-center text-md-right pt-3 pt-md-0">

@@ -1,7 +1,8 @@
 <?php  
     include_once('class.dataBase.php');
+
        class ManageUser{
-        public $link;
+       public $link;
 
        public function __construct(){
 
@@ -9,9 +10,10 @@
            $this->link=$db->connect();
 
             return $this->link;
-        }      
-       function UserRegistration($PrenomUser,$NomUser,$email,$password,$fonctionUser){ 
-            $query="insert INTO user( `prenom_user`, `nom_user`, `email`, `password`, `fonction_user`) values('$PrenomUser','$NomUser','$email','$password','$fonctionUser')";
+        }    
+
+       function UserRegistration($PrenomUser,$NomUser,$email,$password,$fonctionUser,$provinceUser){ 
+            $query="insert INTO user( `prenom_user`, `nom_user`, `email`, `password`, `fonction_user`, `province_user`) values('$PrenomUser','$NomUser','$email','$password','$fonctionUser',$provinceUser)";
              $this->link->exec($query);   
         }
             
@@ -38,10 +40,24 @@
 
            return $data;            
         }
-         function UserUpdate($query){
+
+        function UserUpdate($query){
            $retour= $this->link->exec($query); 
             return $retour; 
              
+        }
+
+        function DeleteUser($id){
+
+            $sql="DELETE FROM user WHERE id_user=:id";
+
+            $stm= $this->link->prepare($sql);
+            $stm->bindParam("id", $id, PDO::PARAM_INT);
+
+            $res=$stm->execute();
+
+            return $res;
+
         }
 
 

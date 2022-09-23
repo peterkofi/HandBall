@@ -42,7 +42,7 @@ include_once("Script/_head.php");
 
         <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li class="index.php"><a href="index.php">Accueil</a></li>
+            <li class="index.php"><a href="accueil.php">Accueil</a></li>
             <li><a href="utilisateur.php">Utilisateurs</a></li>
             <li><a href="athlete.php">Participants Championnat</a></li>
             <li><a href="province.php">Provinces</a></li>

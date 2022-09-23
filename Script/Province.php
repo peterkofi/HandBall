@@ -24,10 +24,22 @@ if (isset($_POST["valider"])) {
     }
 
 
+}
+
+if(isset($_GET["operation"]) ){
+
+    if($_GET["operation"]=="supp"){
+      
+        $id=(int) $_GET["id"];
+
+        $prov = $province-> DeleteProvince($id);
+    
+        if ($prov) {
+            header("Location:../Province.php?message=Succes");
+        } else header("Location:../Province.php?message=Echec");
+    }
 
 
-    //   move_uploaded_file($tmp_namePhotoProfil,$dossierSignature);
 
 
-    //   echo $nomFichierPhotoSignature ." ".$extFichierPhotoProfil;
 }

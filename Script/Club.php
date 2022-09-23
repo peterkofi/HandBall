@@ -4,13 +4,22 @@ include("_head.php");
 
 if(isset($_POST["enregistrer"])){
 
+// var_dump($_POST);
+// var_dump($_FILES);
+// exit();
+
     $NomClub = $_POST["NomClub"];
     $PresidentClub = $_POST["PresidentClub"];
     $DateCreationClub = $_POST["DateCreationClub"];
     $LigueAthlete = $_POST["LigueAthlete"];
     $ProvinceAthlete = $_POST["ProvinceAthlete"];
 
-    
+    // 'NomClub' => string 'rennaissance' (length=12)
+    // 'PresidentClub' => string 'mukuna' (length=6)
+    // 'DateCreationClub' => string '2022-09-05' (length=10)
+    // 'LigueAthlete' => string '2' (length=1)
+    // 'ProvinceAthlete' => string '4' (length=1)
+    // 'enregistrer' => string '' (length=0)
 
     $erreur=[];  
 
@@ -32,7 +41,7 @@ if(isset($_POST["enregistrer"])){
     move_uploaded_file($tmp_namePhotoClub, $dossierClubComplet);
  
 //fichier Club
-if (!empty($_FILES["photoClub"]["name"])) {
+if (isset($nomFichierPhotoClub)) {
 
     if (!in_array($extFichierPhotoClubActuelle, $extPossible)) {
         $erreur["photoClub"] = "Type photo du Club n'est pas permis ";
@@ -41,9 +50,9 @@ if (!empty($_FILES["photoClub"]["name"])) {
     if ($ErreurPhotoClub != 0) {
         $erreur["SauvegardePhotoClub"] = "erreur lors de l'enregistrement de la photo de Club ";
     }
-    if ($sizeFichierPhotoClub > 8000000) {
-        $erreur["TaillePhotoClub"] = " la taille de la photo de Club est trop lourd ";
-    }
+    // if ($sizeFichierPhotoClub > 8000000) {
+    //     $erreur["TaillePhotoClub"] = " la taille de la photo de Club est trop lourd ";
+    // }
     
 } else {
     $erreur["photoClub"] = "veillez inserer la photo de Club ";
@@ -69,8 +78,8 @@ if (!empty($_FILES["photoClub"]["name"])) {
     
  
     if (!empty($erreur)) {
-
-        header("Location:../Club.php?Erreur=1");
+        $tabErr= serialize($erreur);
+        header("Location:../Club.php?Erreur=1&message=$tabErr");
   
     }else{
 
@@ -84,3 +93,17 @@ if (!empty($_FILES["photoClub"]["name"])) {
     }
 
  }
+
+ if(isset($_GET["operation"]) ){
+
+    if($_GET["operation"]=="supp"){
+      
+        $id=(int) $_GET["id"];
+
+        $club = $club-> DeleteUser($id);
+    
+        if ($club) {
+            header("Location:../Club.php?message=Succes");
+        } else header("Location:../Club.php?message=Echec");
+    }
+}

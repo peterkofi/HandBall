@@ -136,9 +136,9 @@ $ligues = $ligue->ListeLigue();
             <th scope="row"><?= $num ?></th>
             <td><?= $ligue->nom ?></td>
             <td>
-                <a href="Script/Province?operation='supp'&id=<?= $ligue->id_ligue ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                <a href="Script/Province?operation='edit'&id=<?= $ligue->id_ligue ?>" class="twitter"><i class="bx bx-edit"></i></a>
-                <a href="Script/Province?operation='detail'&id=<?= $ligue->id_ligue ?>" class="twitter"><i class="bx bx-show"></i></a>
+                <a href="Script/Ligue?operation=supp&id=<?= $ligue->id_ligue ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+                <a href="Script/Ligue?operation=edit&id=<?= $ligue->id_ligue ?>" class="twitter"><i class="bx bx-edit"></i></a>
+                <a href="Script/Ligue?operation=detail&id=<?= $ligue->id_ligue ?>" class="twitter"><i class="bx bx-show"></i></a>
             </td>
           </tr>
 
