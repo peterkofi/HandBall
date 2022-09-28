@@ -1,3 +1,13 @@
+<?php
+
+include_once("Script/_head.php");
+
+$ligues=$ligue->ListeLigue();
+$arbitres=$arbitre->ArbitreList();
+$carteServices=$carteService->carteserviceList();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +70,10 @@
     <a class="nav-link" href="Arbitre.php">Arbitre</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="Licence.php">License</a>
+    <a class="nav-link" href="LicenceAthlete.php">License Athlète</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="LicenceCoach.php">License Coach</a>
   </li>
   <li class="nav-item">
     <a class="nav-link bg-secondary" style="color:white" href="CarteService.php">Carte de service</a>
@@ -68,8 +81,6 @@
 </ul>
 
     </div>
-
-
     <div class="col-lg-9 ml-1" id="main_menu">
  <!-- ======= About Section ======= -->
  <div class="CarteService mt-5">
@@ -79,14 +90,67 @@
         </div>
 
         <form class="form-inline" method="post" action="Script/CarteService.php">
-            <div class="input-group mb-2">
+            <div class="input-group mb-2 mr-1">
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="bx bx-user"></i></div>
               </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="rechercheCarteService" placeholder="Inserer la carte de service..." aria-label="Search">
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="FontionCarteService" placeholder="la fonction ...">
+
+            </div>
+
+            <input type="hidden" name="Agent" value="<?php if(isset($_SESSION) && !empty($_SESSION)) { $agent= (int)$_SESSION["Id_user"]; echo $agent;} ?>">
+              
+
+            
+            <div class="input-group mb-2 mr-2 align-items-center">
+
+              <span span class="small">Ligue</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-football"></i></div>
+              </div>
+
+              <select name="Ligue" id="" class="form-control">
+                  <?php
+
+                    foreach ($ligues as $ligue) {?>
+
+                    <option value="<?= $ligue->id_ligue ?>"><?= $ligue->nom ?></option>
+
+                  <?php
+                  }
+                  ?>
+              </select>
+              
               <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
             </div>
+
+ 
+            <div class="input-group mb-2 mr-2 align-items-center">
+
+              <span span class="small">Arbitre</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-football"></i></div>
+              </div>
+
+              <select name="Arbitre" id="" class="form-control">
+                  <?php
+
+                    foreach ($arbitres as $arbitre) {?>
+
+                    <option value="<?= $arbitre->id_arbitre ?>"><?php echo $arbitre->prenom.' '. $arbitre->nom ?></option>
+
+                  <?php
+                  }
+                  ?>
+              </select>
+              
+              <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
+            </div>
+
+          
+            
         </form>
+
 
       
       <hr>
@@ -110,9 +174,12 @@
         </form>
         </div>
 
+
       <table class="table table-striped mb-3 pb-3" data-aos="fade-left" data-aos-delay="200">
         <thead>
           <tr>
+
+
             <th scope="col">N°</th>
             <th scope="col">Fonction</th>
             <th scope="col">Agent</th>
@@ -120,41 +187,30 @@
             <th scope="col">Carte</th>
             <th scope="col">Carte</th>
             <th scope="col">Ligue</th>
-            <th scope="col">Province</th>
-            <th scope="col">Operation</th>
           </tr>
         </thead>
         <tbody>
+        <?php
+          $num=0;
+        foreach ($carteServices as $carteService) { $num++ ?>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Secreataire</td>
+            <td scope="col"><?= $num ?></td>
+            <td scope="col"><?= $carteService->fonction ?></td>
+            <td scope="col"><?= $carteService->id_agent ?></td>
+            <td scope="col"><?= $carteService->id_ligue ?></th>
+            <td scope="col"><?= $carteService->id_arbitre ?></th>
             <td>
-                 <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
+              <a href="Script/Athlete.php?operation=supp&id=<?= $carteService->id_carte ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+              <a href="Script/Athlete.php?operation=edit&id=<?= $carteService->id_carte ?>" class="twitter"><i class="bx bx-edit"></i></a>
+              <a href="Script/Athlete.php?operation=detail&id=<?= $carteService->id_carte ?>" class="twitter"><i class="bx bx-show"></i></a>
             </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Secreataire</td>
-            <td>
-                <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+
+        <?php
+        }
+        ?>
+
+
         </tbody>
         </table>
 

@@ -37,7 +37,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-      <h1 class="">BIENVENUE</h1> 
+      <h1 class="">BIENVENUE <?php if(isset($_SESSION) && !empty($_SESSION) && $_SESSION["fonction_user"]=="admin"){echo " DANS L'ADMINISTRATION "; }else{ echo "A << ". $_SESSION["nomProvince_user"] . " >>";} ?> </h1> 
       <h2>Vous etes le bienvenu dans le site officiel de la federation congolaise de handball</h2>
 
     </div>
@@ -45,8 +45,8 @@
 
   <main id="main">
 
-    
 
+  
   </main><!-- End #main -->
 
   <?php

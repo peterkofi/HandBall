@@ -13,7 +13,7 @@
         }
     
         function AthleteRegistration($NomAthlete,$PrenomAthlete,$SexeAthlete,$DateNaissance,$LieuDeNaissance,$Poste,$Poid,$Taille,$IdCub){                
-            $query="insert INTO athlete(`noms_athlete`, `prenom_athlete`, `sexe`, `date_naissance`, `lieu_naissance`, `poste`, `poid`, `taille`, `id_club`) values('$NomAthlete','$PrenomAthlete','$SexeAthlete','$DateNaissance','$LieuDeNaissance',$Poste,$Poid,$Taille,$IdCub)";
+            $query="insert INTO athlete( `noms_athlete`, `prenom_athlete`, `sexe`, `date_naissance`, `lieu_naissance`, `poste`, `poid`, `taille`, `id_club`) values('$NomAthlete','$PrenomAthlete','$SexeAthlete','$DateNaissance','$LieuDeNaissance',$Poste,$Poid,$Taille,$IdCub)";
              $this->link->exec($query);   
         }
             
@@ -36,8 +36,6 @@
               return $retour; 
           }
         
-        
-
         function AthleteList(){
             $query="select * FROM athlete" ;
             $res=$this->link->query($query);
@@ -52,6 +50,18 @@
             $data=$res->fetchAll(PDO::FETCH_OBJ);
 
            return $data;            
+        }
+        function DeleteAthlete($id){
+
+            $sql="DELETE FROM athlete WHERE id_athlete=:id";
+
+            $stm= $this->link->prepare($sql);
+            $stm->bindParam("id", $id, PDO::PARAM_INT);
+
+            $res=$stm->execute();
+
+            return $res;
+
         }
 
 

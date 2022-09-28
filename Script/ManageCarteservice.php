@@ -10,8 +10,8 @@
 
             return $this->link;
         }
-        function CarteserviceRegistration($Fonction,$IdAgent,$IdLigue,$IdProvince,$IdArbitre){ 
-            $query="insert INTO carteservice (`fonction`,id_agent,id_ligue,id_province,id_arbitre) values('$Fonction',$IdAgent,$IdLigue,'$IdProvince','$IdArbitre')";
+        function CarteserviceRegistration($Fonction,$IdAgent,$IdLigue,$IdArbitre){ 
+            $query="insert INTO carteservice (`fonction`, `id_agent`, `id_ligue`, `id_arbitre`) values('$Fonction',$IdAgent,$IdLigue,$IdArbitre)";
             $retour = $this->link->exec($query);  
             return $retour; 
         }
@@ -47,6 +47,18 @@
             $data=$res->fetchAll(PDO::FETCH_OBJ);
 
            return $data;            
+        }
+        function DeleteCarteservice($id){
+
+            $sql="DELETE FROM carteservice WHERE id_carte=:id";
+
+            $stm= $this->link->prepare($sql);
+            $stm->bindParam("id", $id, PDO::PARAM_INT);
+
+            $res=$stm->execute();
+
+            return $res;
+
         }
          
 

@@ -10,8 +10,8 @@
 
             return $this->link;
         }
-       function CoachRegistration($NomCoach,$DateNaissance,$LieuNaissance,$IdProvince,$IdLeague,$IdClub){ 
-            $query="insert INTO coach(noms_coach,date_naissance,lieu_naissance,id_province,IdLeague,id_club) values('$NomCoach','$DateNaissance','$LieuNaissance',$IdProvince,$IdLeague,$IdClub)";
+       function CoachRegistration($NomCoach,$PrenomCoach,$sexeCoach,$DateNaissanceCoach,$LieuNaissanceCoach,$ClubCoach){       
+            $query="insert INTO coach(`nom_coach`, `prenom_coach`, `sexe_coach`, `date_naissance`, `lieu_naissance`, `id_club`) values('$NomCoach','$PrenomCoach','$sexeCoach','$DateNaissanceCoach','$LieuNaissanceCoach',$ClubCoach)";
              $this->link->exec($query);   
         }
             
@@ -43,6 +43,17 @@
             return $retour; 
              
         }
+        function DeleteCoach($id){
+
+            $sql="DELETE FROM coach WHERE id_club = :id";
+            $res =$this->link->prepare($sql);
+            $res->bindParam('id', $id, PDO::PARAM_INT);
+            $retour = $res->execute();
+
+            return $retour;
+        }
+
+       
 
 
 

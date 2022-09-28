@@ -1,12 +1,10 @@
 <?php
-
 include_once("Script/_head.php");
 
-$ligues=$ligue->ListeLigue();
-$arbitres=$arbitre->ArbitreList();
+$licenceCoachs = $licenceCoach->ListeLicenceCoach();
+$coachs = $coach->ListeCoach();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,10 +50,9 @@ $arbitres=$arbitre->ArbitreList();
     <div class="row">
 
     <div class="col-lg-2 mt-5 pt-3 shadow-sm">
-
     <ul class="nav flex-column justify-content-center ">
   <li class="nav-item">
-    <a class="nav-link active" href="Athlete.php">Athlète</a>
+    <a class="nav-link active" href="Athlete">Athlète</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="Club.php">Club</a>
@@ -67,13 +64,13 @@ $arbitres=$arbitre->ArbitreList();
     <a class="nav-link" href="Coach.php">Coach</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link bg-secondary" style="color:white" href="Arbitre.php">Arbitre</a>
+    <a class="nav-link" href="Arbitre.php">Arbitre</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="LicenceAthlete.php">License Athlète</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="LicenceCoach.php">License Coach</a>
+    <a class="nav-link bg-secondary" style="color:white" href="LicenceCoach.php">License Coach</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="CarteService.php">Carte de service</a>
@@ -85,132 +82,103 @@ $arbitres=$arbitre->ArbitreList();
 
     <div class="col-lg-9 ml-1" id="main_menu">
  <!-- ======= About Section ======= -->
- <div class="utilisateur mt-5">
+ <div class="Ligue mt-5">
        <hr>
         <div class="section-title" data-aos="fade-left">
-          <h6>Ajout Arbitre</h6>
+          <h6>Ajout Ligue</h6>
         </div>
-        <form class="form-inline" method="post" action="Script/Arbitre.php">
-            <div class="input-group mb-2 mr-1">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-user"></i></div>
-              </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="NomArbitre" placeholder="le nom de l'arbitre...">
 
-            </div>
-
-            <div class="input-group mb-2 mr-1">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-user"></i></div>
-              </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="PostnomArbitre" placeholder="le postnom de l'arbitre...">
-
-            </div>
-
-            <div class="input-group mb-2 mr-1">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-user"></i></div>
-              </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="PrenomArbitre" placeholder="le prenom de l'arbitre...">
-
-            </div>
-
+        <form class="form-inline" method="post" action="Script/LicenceCoach.php">
             
-            <div class="input-group mb-2 mr-1">
+        <div class="input-group mb-2 mr-2 align-items-center">
+
+          <span span class="small">Coach</span>
+          <div class="input-group-prepend">
+            <div class="input-group-text"> <i class="bx bx-football"></i></div>
+          </div>
+
+          <select name="Coach" id="" class="form-control">
+              <?php
+
+                foreach ($coachs as $coach) {?>
+
+                <option value="<?= $coach->id_coach ?>"><?php echo $coach->prenom_coach . " ". $coach->nom_coach; ?></option>
+
+              <?php
+              }
+              ?>
+          </select>
+
+        </div>
+
+
+            <div class="input-group mb-2">
               <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-map"></i></div>
+                <div class="input-group-text"> <i class="bx bx-user"></i></div>
               </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="CertificationArbitre" placeholder="la certification de l'arbitre...">
-            </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="Categorie" placeholder="Insere la categorie..." aria-label="Search">
 
-            <div class="input-group mb-2 mr-1">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-map"></i></div>
-              </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="LieuNaissanceArbitre" placeholder="le lieu de naissance de l'arbitre...">
-
-            </div>
-
-            <div class="input-group mb-2 mr-1">
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-calendar-check"></i></div>
-              </div>
-              <input type="date" class="form-control" id="inlineFormInputGroup" name="DateNaissanceArbitre" placeholder="la date de naissance de l'arbitre...">
-            </div>
-
-
-            <div class="input-group mb-2 mr-2 align-items-center">
-
-              <span span class="small">Ligue</span>
-              <div class="input-group-prepend">
-                <div class="input-group-text"> <i class="bx bx-football"></i></div>
-              </div>
-
-              <select name="LigueArbitre" id="" class="form-control">
-                  <?php
-
-                    foreach ($ligues as $ligue) {?>
-
-                    <option value="<?= $ligue->id_ligue ?>"><?= $ligue->nom ?></option>
-
-                  <?php
-                  }
-                  ?>
-              </select>
-              
               <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
             </div>
-    
+
+           
+        
         </form>
 
       <hr>
       </div>
        
-      <div class="listeUtilisateur shadow-sm">
-
+      <div class="listeLigue shadow-sm">
 
       <div class="d-flex justify-content-between">
 
-<div class="section-title" data-aos="fade">
-  <h6>Liste Arbitres</h6>
-</div>
+        <div class="section-title" data-aos="fade">
+          <h6>Liste Ligues</h6>
+        </div>
 
-</div> 
+        <form class="form-inline" method="post" action="Script/Arbitre.php">
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="NomArbitre" placeholder="Categorie...">
+
+            </div>
+    
+        </form>
+
+        </div>
+
       
       <table class="table table-striped mb-3 pb-3" data-aos="fade-left" data-aos-delay="200">
         <thead>
           <tr>
             <th scope="col">N°</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Prenom</th>
-            <th scope="col">Lieu Naissance</th>
-            <th scope="col">Date Naissance</th>
-            <th scope="col">Certification</th>
-            <th scope="col">Ligue</th>
+            <th scope="col">Cat</th>
+            <th scope="col">Operation</th>
           </tr>
         </thead>
         <tbody>
         <?php
-          $num=0;
-        foreach ($arbitres as $arbitre) { $num++ ?>
+
+
+        $num=0;
+        foreach ($licenceCoachs as $licenceCoach) { $num++; ?>
           <tr>
-            <td scope="col"><?= $num ?></td>
-            <td scope="col"><?= $arbitre->nom ?></td>
-            <td scope="col"><?= $arbitre->prenom ?></td>
-            <td scope="col"><?= $arbitre->lieu_naissance ?></th>
-            <td scope="col"><?= $arbitre->date_naissance ?></th>
-            <td scope="col"><?= $arbitre->certification ?></td>
-            <td scope="col"><?= $arbitre->id_ligue ?></td>
+            <th scope="row"><?= $num ?></th>
+            <td><?= $licenceCoach->id_coach ?></td>
+            <td><?= $licenceCoach->categorie ?></td>
             <td>
-              <a href="Script/Arbitre.php?operation=supp&id=<?= $arbitre->id_arbitre ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-              <a href="Script/Arbitre.php?operation=edit&id=<?= $arbitre->id_arbitre ?>" class="twitter"><i class="bx bx-edit"></i></a>
-              <a href="Script/Arbitre.php?operation=detail&id=<?= $arbitre->id_arbitre ?>" class="twitter"><i class="bx bx-show"></i></a>
+                <a href="Script/LicenceCoach?operation=supp&id=<?= $licenceCoach->id_licenceCoach ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+                <a href="Script/LicenceCoach?operation=edit&id=<?= $licenceCoach->id_licenceCoach ?>" class="twitter"><i class="bx bx-edit"></i></a>
+                <a href="Script/LicenceCoach?operation=detail&id=<?= $licenceCoach->id_licenceCoach ?>" class="twitter"><i class="bx bx-show"></i></a>
             </td>
           </tr>
 
-        <?php
-        }
-        ?>
+
+          <?php
+          } ?>
+         
         </tbody>
         </table>
 

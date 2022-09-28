@@ -21,6 +21,18 @@ if(isset($_POST["enregistrer"])){
     // 'ProvinceAthlete' => string '4' (length=1)
     // 'enregistrer' => string '' (length=0)
 
+
+
+//     C:\wamp64\www\Handball\Script\Club.php:8:
+// array (size=1)
+//   'PhotoClub' => 
+//     array (size=5)
+//       'name' => string '' (length=0)
+//       'type' => string '' (length=0)
+//       'tmp_name' => string '' (length=0)
+//       'error' => int 4
+//       'size' => int 0
+
     $erreur=[];  
 
     $extPossible = array("jpeg", "jpg", "png");
@@ -97,7 +109,6 @@ if (isset($nomFichierPhotoClub)) {
  if(isset($_GET["operation"]) ){
 
     if($_GET["operation"]=="supp"){
-      
         $id=(int) $_GET["id"];
 
         $club = $club-> DeleteClub($id);

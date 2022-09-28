@@ -1,3 +1,14 @@
+<?php
+include_once("Script/_head.php");
+
+$provinces = $province->ListeProvince();
+$ligues=$ligue->ListeLigue();
+$clubs=$club->ListeClub();
+$Athletes=$Athlete->AthleteList();
+$coachs=$coach->ListeCoach();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +71,10 @@
     <a class="nav-link" href="Arbitre.php">Arbitre</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="Licence.php">License</a>
+    <a class="nav-link" href="LicenceAthlete.php">License Athlète</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="LicenceCoach.php">License Coach</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="CarteService.php">Carte de service</a>
@@ -77,17 +91,78 @@
         <div class="section-title" data-aos="fade-left">
           <h6>Ajout Coach</h6>
         </div>
-
+        
         <form class="form-inline" method="post" action="Script/Coach.php">
-            <div class="input-group mb-2">
+            <div class="input-group mb-2 mr-1">
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="bx bx-user"></i></div>
               </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" name="rechercheCoach" placeholder="Inserer le Coach..." aria-label="Search">
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="NomCoach" placeholder="le nom du coach...">
 
+            </div>
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-user"></i></div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="PrenomCoach" placeholder="le prenom du coach...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-map"></i></div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" name="LieuNaissanceCoach" placeholder="le lieu de naissance du coach...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-1">
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-calendar-check"></i></div>
+              </div>
+              <input type="date" class="form-control" id="inlineFormInputGroup" name="DateNaissanceCoach" placeholder="la date de naissance du coach...">
+
+            </div>
+
+            <div class="input-group mb-2 mr-2 align-items-center">
+
+            <span span class="small">Sexe</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-male"></i></div>
+              </div>
+
+              <select name="sexeCoach" id="">
+                <option value="m">M</option>
+                <option value="f">F</option>
+              </select>
+              
+             
+            </div>
+
+
+ 
+            <div class="input-group mb-2 mr-2 align-items-center">
+
+              <span span class="small">Club</span>
+              <div class="input-group-prepend">
+                <div class="input-group-text"> <i class="bx bx-football"></i></div>
+              </div>
+
+              <select name="ClubCoach" id="" class="form-control">
+                  <?php
+
+                    foreach ($clubs as $club) {?>
+
+                    <option value="<?= $club->id_club ?>"><?= $club->nom_club ?></option>
+
+                  <?php
+                  }
+                  ?>
+              </select>
+              
               <button class="btn btn-outline-success ml-2" name="enregistrer" type="submit">Enregister</button>
             </div>
-        
+                   
         </form>
 
     
@@ -119,42 +194,35 @@
             <th scope="col">N°</th>
             <th scope="col">Nom</th>
             <th scope="col">Prenom</th>
-            <th scope="col">Email</th>
-            <th scope="col">Fontion</th>
+            <th scope="col">Lieu Naissance</th>
+            <th scope="col">Date Naissance</th>
+            <th scope="col">Club</th>
             <th scope="col">Operation</th>
           </tr>
         </thead>
         <tbody>
+         
+        <?php
+          $num=0;
+        foreach ($coachs as $coach) { $num++ ?>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Secreataire</td>
+            <td scope="col"><?= $num ?></td>
+            <td scope="col"><?= $coach->nom_coach ?></td>
+            <td scope="col"><?= $coach->prenom_coach ?></td>
+            <td scope="col"><?= $coach->lieu_naissance ?></th>
+            <td scope="col"><?= $coach->date_naissance ?></th>
+            <td scope="col"><?= $coach->id_club ?></td>
             <td>
-                 <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
+              <a href="Script/Coach.php?operation=supp&id=<?= $coach->id_club ?>" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
+              <a href="Script/Coach.php?operation=edit&id=<?= $coach->id_club ?>" class="twitter"><i class="bx bx-edit"></i></a>
+              <a href="Script/Coach.php?operation=detail&id=<?= $coach->id_club ?>" class="twitter"><i class="bx bx-show"></i></a>
             </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Secreataire</td>
-            <td>
-                <a href="#" class="twitter"><i class="bx bx-trash " style="color:red" ></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-edit"></i></a>
-                 <a href="#" class="twitter"><i class="bx bx-show"></i></a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+
+        <?php
+        }
+        ?>
+
         </tbody>
         </table>
 

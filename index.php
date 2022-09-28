@@ -56,7 +56,7 @@ $clubs=$club->ListeClub();
           <h6>Connexion</h6>
         </div>
 
-        <form class="form-inline" method="post" action="Script/User.php">     
+        <form class="form-inline" method="post" action="Script/login.php">     
             <div class="input-group mb-2 mr-2">
               <div class="input-group-prepend">
                 <div class="input-group-text"> <i class="bx bx-mail-send"></i></div>

@@ -11,8 +11,8 @@
 
             return $this->link;
         }
-        function ArbitreRegistration($NomArbitre,$PostnomArbitre,$PrenomArbitre,$LieuDeNaissance,$DateNaissance,$Certification,$IdLigue,$IdProvince){ 
-            $query="insert INTO arbitre(nom, postnom, prenom,lieu_naissance,date_naissance,certification,id_ligue,id_province) values($NomArbitre,'$PostnomArbitre','$PrenomArbitre','$LieuDeNaissance','$DateNaissance','$Certification',$IdLigue,$IdProvince)";
+        function ArbitreRegistration($NomArbitre,$PostnomArbitre,$PrenomArbitre,$LieuDeNaissance,$DateNaissance,$Certification,$IdLigue){ 
+            $query="insert INTO arbitre(`nom`, `postnom`, `prenom`, `lieu_naissance`, `date_naissance`, `certification`, `id_ligue`) values('$NomArbitre','$PostnomArbitre','$PrenomArbitre','$LieuDeNaissance','$DateNaissance','$Certification',$IdLigue)";
              $this->link->exec($query);   
         }
             
@@ -50,6 +50,19 @@
 
            return $data;            
         }
+        function DeleteArbitre($id){
+
+            $sql="DELETE FROM arbitre WHERE id_arbitre=:id";
+
+            $stm= $this->link->prepare($sql);
+            $stm->bindParam("id", $id, PDO::PARAM_INT);
+
+            $res=$stm->execute();
+
+            return $res;
+
+        }
+         
 
 
 

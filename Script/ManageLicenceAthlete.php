@@ -1,6 +1,6 @@
 <?php  
     include_once('class.dataBase.php');
-       class ManageLicenathlete{
+       class ManageLicenceAthlete{
         public $link;
 
        public function __construct(){
@@ -11,7 +11,7 @@
             return $this->link;
         }
        function LicenathleteRegistration($DateLivraison,$DateCreation,$Duree,$IdAthlete){   
-            $query="insert INTO licenathlete(date_livraison,date_creation,durée,id_athlete) values('$DateLivraison','$DateCreation','$Duree',$IdAthlete)";
+            $query="insert INTO licenathlete(`date_livraison`, `date_creation`, `durée`, `id_athlete`) values('$DateLivraison','$DateCreation','$Duree',$IdAthlete)";
              $this->link->exec($query);   
         }
             
@@ -42,6 +42,18 @@
            $retour= $this->link->exec($query); 
             return $retour; 
              
+        }
+        function DeleteLicenceAthlete($id){
+
+            $sql="DELETE FROM licenathlete WHERE id_licence=:id";
+
+            $stm= $this->link->prepare($sql);
+            $stm->bindParam("id", $id, PDO::PARAM_INT);
+
+            $res=$stm->execute();
+
+            return $res;
+
         }
 
 

@@ -1,9 +1,12 @@
+
+
+
+<?php
+include_once("Script/_head.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-<?php
-
-include_once("Script/_head.php");
-?>
 
 <head>
     <meta charset="UTF-8">
@@ -42,10 +45,14 @@ include_once("Script/_head.php");
 
         <nav class="nav-menu d-none d-lg-block">
           <ul>
-            <li class="index.php"><a href="accueil.php">Accueil</a></li>
+
+          <?php if(isset($_SESSION) && !empty($_SESSION)){?>   <li><a href="accueil.php">Accueil</a></li> <?php } ?>
             <li><a href="utilisateur.php">Utilisateurs</a></li>
-            <li><a href="athlete.php">Participants Championnat</a></li>
+            <li><a href="athlete.php">Création</a></li>
             <li><a href="province.php">Provinces</a></li>
+            <li><a href="contact.php">Nous contacter</a></li>
+
+            <?php if(isset($_SESSION)&& !empty($_SESSION)){?>   <li><a href="Script/User.php?operation=deconnexion" class="btn btn-success rounded-pill font-weight-bolder text-white mr-2">Deconnexion</a></li> <?php } ?>
 
             <!--<li class="drop-down"><a href="">Province</a>
               <ul>
@@ -56,7 +63,7 @@ include_once("Script/_head.php");
               </ul> 
             </li>-->
 
-            <li><a href="contact.php">Nous contacter</a></li>
+            
           
           </ul>
         </nav><!-- .nav-menu -->

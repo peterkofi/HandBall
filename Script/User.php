@@ -64,5 +64,12 @@ $erreur = array();
             header("Location:../utilisateur.php?message=Succes");
         } else header("Location:../utilisateur.php?message=Echec");
     }
+
+    if($_GET["operation"]=="deconnexion"){
+      
+        session_destroy();
+        header("Location:../index.php");
+
+    }
 }
 

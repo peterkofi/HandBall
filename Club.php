@@ -70,7 +70,10 @@ $clubs=$club->ListeClub();
     <a class="nav-link" href="Arbitre.php">Arbitre</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="Licence.php">License</a>
+    <a class="nav-link" href="LicenceAthlete.php">License Athlète</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="LicenceCoach.php">License Coach</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="CarteService.php">Carte de service</a>
